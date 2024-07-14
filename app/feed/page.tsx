@@ -85,8 +85,7 @@ const page = () => {
 
   const [id, setId] = useState('');
   const [pair, setPair] = useState('');
-  const [response1, setResponse1] = useState(null);
-  const [response2, setResponse2] = useState(null);
+
 
   const handleKeyPress = (event) => {
     if (event.key === 'Enter') {
@@ -95,34 +94,7 @@ const page = () => {
   };
 
   const performSearch = () => {
-    if (id.trim() === '' || pair.trim() === '') {
-      alert('Please fill in both ID and pair fields.');
-      return;
-    }
-
-    const pairRegex = /^[a-zA-Z0-9]+\/[a-zA-Z0-9]+$/;
-    if (!pairRegex.test(pair)) {
-      alert('Pair must be in the format abc/def.');
-      return;
-    }
-
-    axios.get(`https://oracle-api-whvo.onrender.com/pyth/${id}`)
-      .then(response => {
-        setResponse1(response.data);
-      })
-      .catch(error => {
-        console.error('Error fetching response 1:', error);
-        // Handle error
-      });
-
-    axios.get(`https://oracle-api-whvo.onrender.com/band/${pair}`)
-      .then(response => {
-        setResponse2(response.data);
-      })
-      .catch(error => {
-        console.error('Error fetching response 2:', error);
-        // Handle error
-      });
+    
   };
 
   return (
